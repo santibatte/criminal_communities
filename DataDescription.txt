@@ -1,0 +1,455 @@
+
+## IMPORTANT ##
+
+OffenderIdentifier refers to the offender.
+CrimeIdentifier refers to the crime event.
+
+## The table below gives the labels of each variable.
+
+Variable             Label                                   Position
+══════════════════════════════════════════════════════════════════════════
+OffenderIdentifier   Case number                             1
+OffenderGender       Sex                                     2
+CrimeIdentifier      Event number                            3
+CrimeType1           First crime (Main)                      4
+CrimeType2           Second crime                            5
+CrimeType3           Third crime                             6
+CrimeType4           Fourth crime                            7
+Municipality         Municipality                            8
+CrimeLocation        Place of crime                          9
+NumberYouthOffenders Number of young persons involved        10
+NumberAdultOffenders Number of adult persons involved        11
+CrimeDate            Date of crime event                     12
+CrimeYear            Year of crime event                     13
+
+## The two tables below give the labels of CrimeType# and CrimeLocation.
+
+    CrimeType# Label: Type of Crime
+
+	 ╭─────┬──────────────────────────────╮
+         │Value│Label                         │
+         ├─────┼──────────────────────────────┤
+         │ 1110│CONSPIRATION MEURTRE          │
+         │ 1120│MEURTRE DEUXIEME DEGRE        │
+         │ 1130│HOMICIDE INVOL. COUPABLE      │
+         │ 1140│INFANTICIDE                   │
+         │ 1150│NEGLIGENCE CRIMIN. MORT       │
+         │ 1160│AUTRES INFRACTIONS MORT       │
+         │ 1210│TENTATIVE DE MEURTRE          │
+         │ 1220│CONSPIRATION MEURTRE          │
+         │ 1310│AGRESSION SEXUELLE GRAVE      │
+         │ 1320│AGRESSION SEXUELLE ARMEE      │
+         │ 1330│AGRESSION SEXUELLE            │
+         │ 1340│AUTRE INFRACTION SEXUELLE     │
+         │ 1345│CONTACT SEXUEL                │
+         │ 1350│INCITATION CONTACT SEXUEL     │
+         │ 1355│EXPLOITATION SEXUELLE-AUTORITÉ│
+         │ 1360│INCESTE                       │
+         │ 1365│CORRUPTION D'ENFANT           │
+         │ 1370│LEURRE AVEC UN ORDINATEUR     │
+         │ 1375│RELATION SEXUELLE ANALE       │
+         │ 1385│VOYEURISME                    │
+         │ 1410│VOIES DE FAIT GRAVES NIV3     │
+         │ 1420│AGR.ARMEE OU LESIONS NIV2     │
+         │ 1430│VOIES DE FAIT NIV.1           │
+         │ 1440│INFLIGER ILLEGAL. LESIONS     │
+         │ 1450│DECH. ARME AVEC INTENTION     │
+         │ 1460│VOIE DE FAIT AGENT            │
+         │ 1470│NEGLIGENCE CRIM. LESIONS      │
+         │ 1475│TRAPPES LESIONS CORPOREL      │
+         │ 1480│AUTRES VOIES DE FAIT          │
+         │ 1510│ENLEVEMENT                    │
+         │ 1520│PRISE D''OTAGE                │
+         │ 1525│TRAITE DE PERSONNE            │
+         │ 1530│ENLEVEMENT MOINS 14 ANS       │
+         │ 1540│ENLEVEMENT MOINS 16 ANS       │
+         │ 1550│ENLEV. ORDONNANCE GARDE       │
+         │ 1560│ENLEV. SANS ORDON. GARDE      │
+         │ 1570│PASSAGE ENFANTS ETRANGER      │
+         │ 1610│VOL QUALIFIE                  │
+         │ 1611│VOL QUALIFIE ARMES A FEU      │
+         │ 1620│EXTORSION                     │
+         │ 1625│HARCELEMENT CRIMINEL          │
+         │ 1626│APPELS TEL. INDEC. HARASS.    │
+         │ 1630│AUTRE CRIME AVEC VIOLENCE     │
+         │ 1640│PROFERER DES MENACES          │
+         │ 1650│MORT/LESION INCEND/MEFAIT     │
+         │ 1660│MORT/LESIONS - EXPLOSIFS      │
+         │ 2120│INTRODUCTION EFFRACTION       │
+         │ 2130│VOL AU-DESSUS + 5000 $        │
+         │ 2140│VOL EN-DESSOUS - 5000 $       │
+         │ 2150│RECEL                         │
+         │ 2160│FRAUDE                        │
+         │ 2910│VOL QUALIFIE (CIE INST.)      │
+         │ 3110│MAISON DE DEBAUCHE            │
+         │ 3115│PROST-18,VIVRE PROD PROST     │
+         │ 3120│PROXENETISME                  │
+         │ 3125│PROST-18,PROXENETISME         │
+         │ 3130│AUTRE ACTE PROSTITUTION       │
+         │ 3210│MAISON DE PARIS               │
+         │ 3220│MAISON DE JEUX                │
+         │ 3310│EXPLOSIFS                     │
+         │ 3320│ARMES PROHIBEES               │
+         │ 3330│ARMES AUT.RESTREINTE          │
+         │ 3340│ARME A FEU:VENTE ACQUISI      │
+         │ 3350│AUTRES ARMES OFFENS.          │
+         │ 3360│USAGE ARME FEU FAUSSE ARM     │
+         │ 3365│TRAFIC D''ARMES               │
+         │ 3370│POS ARMES EN CONTRAV ORDO     │
+         │ 3375│POSSESSION D''ARMES           │
+         │ 3380│IMPORT EXPORT NON AUTO AR     │
+         │ 3385│USAGE DANGEREUX ARME A FE     │
+         │ 3390│DOC.ADM RELATIVE ARME A F     │
+         │ 3395│ENTREPOSAGE NON SECUR ARM     │
+         │ 3410│INFRACTION CAUTIONNEMENT      │
+         │ 3420│UTIL DE MONN CONTREF.         │
+         │ 3430│TROUBLER LA PAIX              │
+         │ 3440│EVASION GARDE LEGALE          │
+         │ 3450│ACTION INDECENTE              │
+         │ 3455│PROD.DISTR PORNO JUVENILE     │
+         │ 3460│ACTE CONTR. BONNES MOEURS     │
+         │ 3465│LEURRE PAR ORDINATEUR         │
+         │ 3470│ENTRAVE AGENT PAIX            │
+         │ 3480│DETENU LIBERTE ILLEGALE       │
+         │ 3490│INTRUSION DE NUIT             │
+         │ 3510│DEFAUT DE COMPARAITRE         │
+         │ 3520│BRIS D''ORDONNANCE            │
+         │ 3530│INTIMIDATION TELEPHONE        │
+         │ 3540│MENACES (BIENS, ANIMAUX)      │
+         │ 3550│ENCOURAGEMENT AU GENOCIDE     │
+         │ 3560│INCITA. PUBL. A LA HAINE      │
+         │ 3570│ENREG. ILLÉGAL D'UN FILM      │
+         │ 3710│INFRACTION ORDRE PUBLIC       │
+         │ 3730│MEFAITS PUBLICS               │
+         │ 3740│NUISANCE PUBLIQUE             │
+         │ 3750│ATTEINTE A LA VIE PRIVEE      │
+         │ 3770│INFR. PERSONNE REPUTATION     │
+         │ 3780│INFR. DROIT DE PROPRIETE      │
+         │ 3790│FRAUDE CONTRAT COMMERCE       │
+         │ 3810│CRUAUTE ENVERS UN ANIMAL      │
+         │ 3820│INFRACTIONS - MONNAIE         │
+         │ 3830│TENTATIVES, CONSPIRATION      │
+         │ 3890│RECYCL PROD CRIMIN(C.CR)      │
+         │ 4110│HEROINE POSSESSION            │
+         │ 4120│COCAINE POSSESSION            │
+         │ 4130│AUTRE SUBSTANCE               │
+         │ 4150│METAHAMPHETAM. POSSESSION     │
+         │ 4160│ECSTASY POSSESSION            │
+         │ 4210│HEROINE TRAFIC                │
+         │ 4220│COCAINE TRAFIC                │
+         │ 4230│AUTRE SUBSTANCE               │
+         │ 4240│CANNABIS TRAFIC               │
+         │ 4250│METHAMPHETAMINES TRAFIC       │
+         │ 4260│ECSTASY TRAFIC                │
+         │ 4310│HEROINE (IMPORT.PRODUCT)      │
+         │ 4320│COCAINE (IMPORT.PRODUCT)      │
+         │ 4330│AUTRE SUBSTANCE               │
+         │ 4340│CANNABIS (IMPORT SEULEM)      │
+         │ 4350│METAMPHETAMINES IMP EXP       │
+         │ 4360│ECSTASY IMPORT EXPORT         │
+         │ 4420│VISITES MULTIPLES STU.        │
+         │ 4430│AUTRES DROGUES PRODUCTION     │
+         │ 4440│CANNABIS CULTURE              │
+         │ 4450│METAMPHETAM. PRODUCTION       │
+         │ 4460│ECSTASY PRODUCTION            │
+         │ 4520│VISITES MULTIPLES STU.        │
+         │ 4530│FAUSSES ORDONNANCES STU.      │
+         │ 4540│SUPPOSITION PERSONNE STU.     │
+         │ 4610│RECYCL PROD CRIM (LRCDAS)     │
+         │ 4990│AUTR INFR A LA LRCDAS         │
+         │ 5120│SUBS POSSES ANNEX III,IV      │
+         │ 5210│SUBS TRAFIC ANNEX III,IV      │
+         │ 5220│DROGUES RESTR. TRAFIC         │
+         │ 5320│VISITES MULTIPLES ALI.        │
+         │ 5330│FAUSSES ORDONNANCES ALI.      │
+         │ 5340│SUPPOSITION PERSONNE ALI.     │
+         │ 5420│SUBS IMP.PRO ANNEX III,IV     │
+         │ 6100│LOI DE LA FAILLITE            │
+         │ 6150│LOI IMPOTS SUR LE REVENU      │
+         │ 6200│LOI MARINE MARCHANDE          │
+         │ 6250│LOI SANTE PUBLIQUE            │
+         │ 6300│LOI DES DOUANES               │
+         │ 6400│LOI D''ACCISE                 │
+         │ 6450│LOI JEUNE CONTREVENANT        │
+         │ 6500│LOI SUR IMMIGRATION           │
+         │ 6550│LOI SUR LES ARMES A FEU       │
+         │ 6560│LOI SUR DEFENSE NATIONALE     │
+         │ 7300│AUTRES LOIS PROVINCIALES      │
+         │ 7600│LOI SUR LE TABAC              │
+         │ 7650│LOI ANASTASIA (ART 2.12)      │
+         │ 8100│REGLEMENTS MUNICIPAUX         │
+         │ 8110│CONSOMMATION   UTIL. EAU      │
+         │ 8120│ANIMAUX                       │
+         │ 8130│ARCADES - SALLE D''AMUSEM     │
+         │ 8140│PARCS MUNICIPAUX              │
+         │ 8150│VENTES PROHIBEES              │
+         │ 8160│ALARME                        │
+         │ 9110│CONDUITE DANGER. MORT         │
+         │ 9120│CONDUITE DANGER. LESIONS      │
+         │ 9130│CONDUITE DANGEREUSE           │
+         │ 9210│COND. CAP. AFF. MORT          │
+         │ 9220│COND. CAP. AFF. LESIONS       │
+         │ 9230│COND. CAP. AFF. OU + 80       │
+         │ 9250│REFUS ECHANTILLON SANG        │
+         │ 9310│DELIT FUITE CODE CRIMINEL     │
+         │ 9311│DELIT FUITE DOMMAGE MAT.      │
+         │ 9320│COND. V.A. INTERDICTION       │
+         │ 9330│AUTRE INFR. CIRCULAT C.CR     │
+         │ 9510│CSR DELIT DE FUITE            │
+         │ 9530│CSR COND. INTERDICTION        │
+         │14551│USAGE ARME A FEU CRIME        │
+         │14552│BRAQUER UNE ARME A FEU        │
+         │14601│VOIE DE FAIT POLICIER         │
+         │14602│VOIE DE FAIT AGENT PAIX       │
+         │15101│ENLEVEMENT                    │
+         │15102│SEQUESTRATION                 │
+         │16101│VOL QUALIFIE SUR PERSONNE     │
+         │16102│VOL QUALIFIE DANS COMMERC     │
+         │16103│VOL QUALIFIE INST. FINANC     │
+         │16104│VOL QUALIFIE DE VEHICULE      │
+         │16105│VOL QUALIFIE DE VR BLINDE     │
+         │16106│VOL QUALIFIE SAC A MAIN       │
+         │16109│AUTRES VOLS QUALIFIES         │
+         │16201│EXTORSION - PERSONNE          │
+         │16209│EXTORSION - AUTRE             │
+         │16701│INTIMID. GEN. ART. 423 1.A-G  │
+         │16702│INTIMID. PERS. SYST. JUSTI    │
+         │21101│INCENDIE BIEN IMMOBILIER      │
+         │21102│INCENDIE DE VEH. AUTO.        │
+         │21103│INCENDIE V.R EN MOUVEMENT     │
+         │21109│INCENDIE  AUTRES BIENS        │
+         │21201│INTRO PAR EFFR. DANS RES.     │
+         │21202│INTRO EF. CAMP CHA. ROUL.     │
+         │21203│INTRO EF. ETA. COM. PUBL.     │
+         │21209│AUTRES INTRO AVEC EFFRAC.     │
+         │21301│VOL + 5000$ DANS SUR VEH.     │
+         │21303│VOL + 5000$ DE SAC A MAIN     │
+         │21304│VOL + 5000$ A LA TIRE         │
+         │21305│VOL + 5000$ A L''ETALAGE      │
+         │21306│VOL + 5000$ DE BICYCLETTE     │
+         │21309│AUTRES VOLS + 5000$           │
+         │21351│VOL AUTOMOBILE                │
+         │21352│VOL CAMION,AUTOBUS            │
+         │21353│VOL MOTOCYCLETTE              │
+         │21354│VOL TRACTEUR,REMORQUE         │
+         │21355│VOL VR CONSTRUCTION,FERME     │
+         │21356│VOL MOTONEIGE                 │
+         │21357│VOL VEHICULE TOUT TERRAIN     │
+         │21359│VOL AUTRE VEHICULE            │
+         │21401│VOL 5000$ - DANS SUR VEH.     │
+         │21403│VOL 5000$ - DE SAC A MAIN     │
+         │21404│VOL 5000$ - A LA TIRE         │
+         │21405│VOL 5000$ - A L''ETALAGE      │
+         │21406│VOL 5000$ ET - DE BICYCL.     │
+         │21409│AUTRES VOLS 5000$ ET -        │
+         │21601│FRAUDE PAR CARTE SERVICE      │
+         │21602│FRAUDE PAR CHEQUE             │
+         │21603│FRAUDE PAR GUICHET AUTO..     │
+         │21604│OBTENTION FRAU.GITE-NOUR.     │
+         │21605│OBTENTION FRAU. TRANSPORT     │
+         │21607│SUPPOSITION DE PERSONNE       │
+         │21608│FAUSSE RECLAM. GOUVERN.       │
+         │21609│AUTRE FRAUDE                  │
+         │21610│FRAUDE PAR TELEMARKETING      │
+         │21611│FRAUDE VAL. MOB. FINANCE      │
+         │21612│FAUSSE RECLAM. ASSURANCE      │
+         │21613│FRAUDE PAR ORDINATEUR         │
+         │21614│CLONAGE CARTES DE SERVICE     │
+         │21699│AUTRES FRAUDES                │
+         │21701│MEFAIT DOMMAGE + 5000$        │
+         │21702│MEFAIT DOMMAGE 5000$ OU -     │
+         │21703│MEFAITS + 5000$ SUR VEH.      │
+         │21704│MEFAITS 5000$ - SUR VEH.      │
+         │21705│MEFAIT (GRAFFITI) + 5000$     │
+         │21706│MEFAIT (GRAFFITI) 5000$ -     │
+         │21708│BIENS CULTE RELIG. -5000$     │
+         │32301│PRENEUR AUX LIVRES            │
+         │32302│LOTERIE ILLEGALE              │
+         │32303│AUTRE JEU ET PARIS            │
+         │34551│PRODUCTION PORNO JUVENILE     │
+         │34552│DISTRIBUTION PORNO JUVENILE   │
+         │34553│POSSESSION PORNO JUVENILE     │
+         │34554│VOYEURISME                    │
+         │37101│INTIMIDATION                  │
+         │37109│AUTRE INFR. CON.ORD. PUB.     │
+         │37201│BIENS SERV. FINS TERROR.      │
+         │37206│HEBERGER OU CACHER TERROR     │
+         │37301│MEFAITS PUBLICS               │
+         │37302│APPEL A LA BOMBE (SI NEG)     │
+         │37309│AUTR INFR(ART119-148C.CR)     │
+         │37901│VENTE PYRAMIDALE              │
+         │37902│CORRUPTION FONCTIONNAIRES     │
+         │37903│MALVERSATION                  │
+         │37904│VALEURS MOBILIERES            │
+         │37905│VALEURS IMMOBILIERES          │
+         │37906│INTIMID. PERS. JUSTICE        │
+         │37909│AUT INF CONT. FRAUD. COMM     │
+         │38101│FAUSSE ALARME - INCENDIE      │
+         │38102│CRUAUTE ENVERS UN ANIMAL      │
+         │38109│AUTR ACT VOLONT PROH BIEN     │
+         │38401│CHARGER PERS. INF. CRIMIN     │
+         │38402│COMM. INF. ORG. CRIMIN.       │
+         │38403│PARTIC. ACT. ORG. CRIMIN.     │
+         │39999│TOUTE AUTRE INF. AU C.CR.     │
+         │41301│POSSESSION CRACK              │
+         │42101│POS TRAFIC HEROINE            │
+         │42201│POS TRAFIC COCAINE            │
+         │42301│AUTRE SUBSTANCE               │
+         │42302│CRACK TRAFIC                  │
+         │42303│POS FIN TRAFIC CRACK          │
+         │42401│POS FIN TRAFIC CANNABIS       │
+         │42501│METHAMPHETAM. POS TRAFIC      │
+         │42601│ECSTASY POS. TRAFIC           │
+         │43301│CRACK (IMPORT.PRODUCT)        │
+         │44401│CANNABIS HYDROPONIQUE         │
+         │44402│CANNABIS EN TERRE             │
+         │52101│SUBS FIN TRF ANNEX III,IV     │
+         │69003│RECYCL. BIENS C.C. (C-61)     │
+         │69009│AUTRES LOIS FEDERALES         │
+         │71002│PERMIS. MOINS 18 ANS          │
+         │71003│VENTE SANS PERMIS             │
+         │71004│AUTRES S.A.Q. L.P.A.          │
+         │71005│AUTRES L.I.M.B.A.             │
+         │71007│VENTE APRES LES HEURES        │
+         │71008│BOUTEILLES NON TIMBREES       │
+         │71009│B.A. NON ACHETEE A LA SAQ     │
+         │73001│LOI EXPLOSIFS (PROVINC.)      │
+         │73003│LOIS LOTERIES ET COURSES      │
+         │73005│REGL. CAMIONNAGE VRAC         │
+         │73007│LOI TRANSPORT TAXI            │
+         │73008│LOI SUR TRANSPORTS            │
+         │73009│AUTOBUS                       │
+         │73010│REGLEMENT TRANSPORT TAXI      │
+         │73011│REGLEMENT TRANSP. DECHETS     │
+         │73012│REGL. TRANSPORT SCOLAIRE      │
+         │73014│REGLEMENT - CAMIONNAGE        │
+         │73098│AUTRES LOIS PROVINCIALES      │
+         │73099│AUTRES REGLEMENTS             │
+         │74001│LOI AGENCE DE SECURITE        │
+         │74002│REGL. SUR AGENCES SECU.       │
+         │75001│LOI ASSURANCE AUTO QC         │
+         │75002│REGLEMENT SUR ASSURANCE       │
+         │91101│POURSUITE MORT                │
+         │91102│COND. DANGER. MORT            │
+         │91201│POURSUITE LESIONS             │
+         │91202│COND. DANGER. LESIONS         │
+         │91301│COND. DANG. ACC. MATERIEL     │
+         │91302│POURSUITE ACCIDENT MATER.     │
+         │91303│POURSUITE SANS ACCIDENT       │
+         │91309│COND. DANG. SANS ACCIDENT     │
+         │92301│COND. CAP. AFF. ACC. MAT.     │
+         │92302│GARDE OU CONTR. CAP. AFF.     │
+         │92309│CAP COND AFFAIBLIE.AUTRE      │
+         │92401│REF. ECHANT.HAL. APP.DET.     │
+         │92402│REFUS ECHANT. HAL. ALC.       │
+         │93101│DELIT DE FUITE MORT           │
+         │93102│DELIT DE FUITE LESIONS        │
+         │93103│DELIT FUITE VIC SANS LESI     │
+         ╰─────┴──────────────────────────────╯
+
+     CrimeLocation Label: Place of crime                        
+
+          ╭─────┬──────────────────────────╮
+          │Value│Label                     │
+          ├─────┼──────────────────────────┤
+          │    0│ENDROIT INCONNU           │
+          │    1│MAISON UNIFAMILIALE       │
+          │    2│UNITE D''HABITATION       │
+          │    3│HOTEL,MOTEL MAISON CHAMB. │
+          │    4│IMMEUBLE COMMERCIAL       │
+          │    5│STATIONNEMENT             │
+          │    6│ECOLE                     │
+          │    7│ETABLISSEMENT PUBLIC      │
+          │    8│INST.DE TRANSPORT PUBLIC  │
+          │    9│VOIE PUBLIQUE             │
+          │   10│PARC/PLAN D''EAU/ZONE LIB.│
+          │   11│MARINA                    │
+          │   12│ECOLE ACTIVITE SURVEILLEE │
+          │   13│ECOLE ACTIVITE NON. SURV. │
+          │   14│UNIVERSITE / CEGEP        │
+          │   16│PRISON                    │
+          │   17│AUTOROUTE                 │
+          │   18│COURS DE JUSTICE          │
+          │   19│POSTE DE POLICE           │
+          │   20│STATIONNEMENT INTERIEUR   │
+          │   21│RUE                       │
+          │   22│RUELLE                    │
+          │   23│PISTE CYCLABLE            │
+          │   24│TUNNEL PIETON, PASSAGE    │
+          │   25│TERRAIN VACANT            │
+          │   26│CABANE A SUCRE            │
+          │   27│DANS VEHICULE SEULEMENT   │
+          │   28│AEROPORT                  │
+          │   29│LIEU D''ENTREPOSAGE       │
+          │   30│CENTRE DE LOISIRS, ARENA  │
+          │   31│EGLISE, PRESBYTERE        │
+          │   32│HOPITAL, CLINIQUE         │
+          │   33│CLSC                      │
+          │   34│GARDERIE                  │
+          │   35│CELLULE                   │
+          │   36│DANS VEHICULE TRANSP. COM │
+          │   37│DANS AUTO TAXI            │
+          │   38│CONSTRUCTION SUR PROP.    │
+          │   39│CONCESSIONNAIRE           │
+          │   40│CAMP, CHALETS ROULOTTES   │
+          │   41│GUICHET AUTOMATIQUE       │
+          │   42│BANQUE DU CANADA          │
+          │   43│BANQUE LAURENTIENNE       │
+          │   44│BANQUE NATIONALE          │
+          │   45│BANQUE ROYALE             │
+          │   46│BANQUE NOUVELLE-ECOSSE    │
+          │   47│BANQUE TORONTO DOMINION   │
+          │   48│BANQUE COMMERCE           │
+          │   49│BANQUE DE MONTREAL        │
+          │   50│TAVERNE                   │
+          │   51│CLUB, BOITE DE NUIT       │
+          │   52│BAR, BRASSERIE            │
+          │   53│DEBIT CLANDESTIN          │
+          │   54│VENDEUR DE CIDRE          │
+          │   55│RESTAURANT                │
+          │   56│EDIFICE A BUREAUX         │
+          │   57│BUREAU PROFESSIONNEL      │
+          │   58│ENTREPOT                  │
+          │   59│MAIL SOUTERRAIN           │
+          │   60│SALLE DE JEUX             │
+          │   61│CENTRE COMMERCIAL         │
+          │   62│SALLE DE REUNION          │
+          │   63│CENTRE DE SKI             │
+          │   64│PARC OLYMPIQUE            │
+          │   65│TERRE DES HOMMES          │
+          │   66│FOIRE                     │
+          │   67│SALON BEAUTE, BRONZ/COIF. │
+          │   68│CLUB VIDEO                │
+          │   69│TABAGIE,KIOSQUE,JOURNAUX  │
+          │   70│DEPANNEUR                 │
+          │   71│EPICERIE                  │
+          │   72│GARAGE STATION SERVICE    │
+          │   73│BANQUE                    │
+          │   74│CAISSE POPULAIRE          │
+          │   75│ETABLISSEMENT FINANCIER   │
+          │   76│AUTRE ETABLISSEMENT COM.  │
+          │   77│CHANTIER DE CONSTRUCTION  │
+          │   78│STATION LIBRE SERVICE     │
+          │   79│REPRESENTANT LOTO QUEBEC  │
+          │   80│INDUSTRIE                 │
+          │   81│BATIMENT DE FERME         │
+          │   82│METRO VEHICULE            │
+          │   83│METRO STATION OU PROXIMIT │
+          │   84│AUTOBUS STCUM             │
+          │   85│ABRIBUS STCUM             │
+          │   86│EDIFICE STCUM             │
+          │   87│AGENCE LOCATION           │
+          │   88│AGENCE VOYAGE             │
+          │   89│HOTEL, MOTEL EXCL. CHAMB. │
+          │   90│CINEMA, SALLE SPECTACLE   │
+          │   91│BIJOUTERIE                │
+          │   92│MAGASIN FOURRURE          │
+          │   93│MAGASIN RAYONS            │
+          │   94│MERCERIE, LINGERIE        │
+          │   95│PHARMACIE                 │
+          │   96│PATISSERIE, BOULANGERIE   │
+          │   97│CIE TRANSPORT             │
+          │   98│SOCIETE ALCOOLS (SAQ)     │
+          │   99│AUTRE(S)                  │
+          │  999│Missing                   │
+          ╰─────┴──────────────────────────╯
