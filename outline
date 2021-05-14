@@ -10,7 +10,7 @@ En esta parte haremos una introduccion sobre el uso de teoria de redes al analis
 En esta parte esepcificaremos la metodologia (algebra, analisis global, analisis de comunidades, medidas de centralidad)
 
 
-# Ejemplo canónico: Red Caviar red dirigida
+# Ejemplo canónico: Red Caviar red dirigida 
 
 ## Matriz de ajdacencia
 
@@ -28,19 +28,32 @@ En esta parte esepcificaremos la metodologia (algebra, analisis global, analisis
 
 Coffending Network
 
-## Matriz de ajdacencia
+## Preprocesamiento
 
-## Exploracion general
+## Matriz de ajdacencia (bases matemáticas)
 
-## Caracteristicas globales
+## Exploracion general (imagen gephi bruta) 
+
+
+## Caracteristicas globales 
+
+
+Conclusion: no hay red grande, pero sospechamos que hay algo atras
 
 
 
-### Características de las comunidades más grandes
+
+### refinacion, seleccionar un treshold adecuado
+
+
+
+### Características de las comunidades más grandes (top 5)
 
 
 
 ### Características de las comunidades con vinculos más densos
+
+
 
 
 # Conclusión
