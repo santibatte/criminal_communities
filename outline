@@ -1,0 +1,62 @@
+Pregunta: ¿Existe una red criminal en Quebec?
+
+
+# Intro
+
+En esta parte haremos una introduccion sobre el uso de teoria de redes al analisis criminologico
+
+# Metodologia:
+
+En esta parte esepcificaremos la metodologia (algebra, analisis global, analisis de comunidades, medidas de centralidad)
+
+
+# Ejemplo canónico: Red Caviar red dirigida 
+
+## Matriz de ajdacencia
+
+## Exploracion general
+
+## Caracteristicas globales
+
+## Evolución en el tiempo
+
+## Medidas de centralidad para cada t
+
+
+
+# Problema 2 Coffending Network red no dirigida
+
+Coffending Network
+
+## Preprocesamiento
+
+## Matriz de ajdacencia (bases matemáticas)
+
+## Exploracion general (imagen gephi bruta) 
+
+
+## Caracteristicas globales 
+
+
+Conclusion: no hay red grande, pero sospechamos que hay algo atras
+
+
+
+
+### refinacion, seleccionar un treshold adecuado
+
+
+
+### Características de las comunidades más grandes (top 5)
+
+
+
+### Características de las comunidades con vinculos más densos
+
+
+
+
+# Conclusión
+
+No hay una gran red pero si tenemos pequeñas organizaciones que giran en torno a delitos, locallidades y modus operandi similares con personas conectadas entre ellos. Hay algunas grandes y complejas y hay otras pequeñas pero con conexiones muy densas.
+
