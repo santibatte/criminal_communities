@@ -1,0 +1,14 @@
+## Jupyter
+.ipynb_checkpoints
+
+
+## Data
+Cooffending.csv
+
+
+## Directories
+.DS_Store
+
+
+## R
+.Rhistory
