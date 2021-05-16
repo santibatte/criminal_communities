@@ -135,3 +135,73 @@ def centrality_analysis(gr_top):
 
 
     return eigenvector,betwneeness,degree
+
+
+
+
+
+"----------------------------------------------------------------------------------------------------------------------"
+######################
+## Caviar functions ##
+######################
+
+
+## Function to download caviar data
+def download_caviar_data():
+    """
+
+    :return:
+    """
+
+    phases = {}
+    G = {}
+    for i in range(1,12):
+      var_name = "phase" + str(i)
+      file_name = "https://raw.githubusercontent.com/ragini30/Networks-Homework/main/" + var_name + ".csv"
+      phases[i] = pd.read_csv(file_name, index_col = ["players"])
+      phases[i].columns = "n" + phases[i].columns
+      phases[i].index = phases[i].columns
+      G[i] = nx.from_pandas_adjacency(phases[i])
+      G[i].name = var_name
+
+    return phases, G
+
+
+
+## Graph exploring adyacency matrix throughout time
+def adys_in_time_plot(G):
+    """
+
+    :return:
+    """
+
+    ## Dataframe with data to plot
+    nodes_evol = pd.DataFrame.from_dict(
+        {
+            "nodes": [G[i].number_of_nodes() for i in G],
+            "edges": [G[i].number_of_edges() for i in G]
+        }
+    )
+    nodes_evol.index = ["int_" + str(num) for num in range(1, 12)]
+
+    ## Creating plot
+    fig, ax = plt.subplots(figsize=(13, 7))
+
+    nodes_evol["edges"].plot(kind="line", marker="o", color="b", legend=True)
+    nodes_evol["nodes"].plot(kind="bar", legend=True, color="g")
+
+    ax.set_xlabel("Intervenciones a lo largo del tiempo", fontsize=15)
+    ax.set_ylabel("Conteo de elementos", fontsize=15)
+
+    plt.xticks(rotation=0)
+
+    fig.suptitle("Exploración de matrices de adyacencia (nodos y aristas)", fontsize=20)
+
+    plt.show()
+
+
+
+
+"----------------------------------------------------------------------------------------------------------------------"
+## END OF FILE ##
+"----------------------------------------------------------------------------------------------------------------------"
