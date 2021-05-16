@@ -23,7 +23,23 @@ En esta parte esepcificaremos la metodologia (algebra, analisis global, analisis
 
 # Ejemplo canónico: Red Caviar red dirigida 
 
+## Introducción
+Caviar se refiere a una investigación criminal coordinada por autoridades de Canadá durante los años 1994 a 1996. El objetivo de esta investigación era entender las interacciones entre los distintos criminales que operaban en Canadá. Durante el periodo de dos años, las autoridades canadienses intervinieron 11 veces las comunicaciones de los criminales para entender como se relacionaban. Se generó un conjunto de datos distinto con cada una de estas intervenciones.
+
+Los datos de esta investigación permiten analizar los cambios en la red de criminales a través del tiempo y el cambio de circunstancias. Se dio seguimiento a un total de 110 criminales, de los cuales 82 eran traficantes de drogas y 28 no traficantes.
+
+
 ## Matriz de ajdacencia
+Dado que se trata de un caso **no dirigido**, se elaboraron 11 matrices **simétricas de adyacencia**. Cada matriz relaciona al grupo de criminales con base en interacciones entre ellos.
+
+Extracto de una matriz de adyacencia:
+```{r}
+tibble(
+  a = c()
+)
+```
+
+
 
 ## Exploracion general
 
