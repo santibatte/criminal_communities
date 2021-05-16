@@ -135,3 +135,200 @@ def centrality_analysis(gr_top):
 
 
     return eigenvector,betwneeness,degree
+
+
+
+
+
+"----------------------------------------------------------------------------------------------------------------------"
+#######################
+## Caviar parameters ##
+#######################
+
+
+## Selection of networks for deep analysis
+nums_cols = {
+    "fase_1a": {
+        "int": 1,
+        "col": "c",
+        "pos": (0, 0)
+    },
+    "fase_1b": {
+        "int": 3,
+        "col": "c",
+        "pos": (0, 1)
+    },
+    "fase_2": {
+        "int": 5,
+        "col": "r",
+        "pos": (0, 2)
+    },
+    "fase_3": {
+        "int": 6,
+        "col": "g",
+        "pos": (1, 0)
+    },
+    "fase_4a": {
+        "int": 8,
+        "col": "y",
+        "pos": (1, 1)
+    },
+    "fase_4b": {
+        "int": 10,
+        "col": "y",
+        "pos": (1, 2)
+    },
+}
+
+
+
+
+
+"----------------------------------------------------------------------------------------------------------------------"
+######################
+## Caviar functions ##
+######################
+
+
+## Function to download caviar data
+def download_caviar_data():
+    """
+
+    :return:
+    """
+
+    phases = {}
+    G = {}
+    for i in range(1,12):
+      var_name = "phase" + str(i)
+      file_name = "https://raw.githubusercontent.com/ragini30/Networks-Homework/main/" + var_name + ".csv"
+      phases[i] = pd.read_csv(file_name, index_col = ["players"])
+      phases[i].columns = "n" + phases[i].columns
+      phases[i].index = phases[i].columns
+      G[i] = nx.from_pandas_adjacency(phases[i])
+      G[i].name = var_name
+
+    return phases, G
+
+
+
+## Graph exploring adyacency matrix throughout time
+def adys_in_time_plot(G):
+    """
+
+    :return:
+    """
+
+    ## Dataframe with data to plot
+    nodes_evol = pd.DataFrame.from_dict(
+        {
+            "nodes": [G[i].number_of_nodes() for i in G],
+            "edges": [G[i].number_of_edges() for i in G]
+        }
+    )
+    nodes_evol.index = ["int_" + str(num) for num in range(1, 12)]
+
+    ## Creating plot
+    fig, ax = plt.subplots(figsize=(13, 7))
+
+    nodes_evol["edges"].plot(kind="line", marker="o", color="b", legend=True)
+    nodes_evol["nodes"].plot(kind="bar", legend=True, color="g")
+
+    ax.set_xlabel("Intervenciones a lo largo del tiempo", fontsize=15)
+    ax.set_ylabel("Conteo de elementos", fontsize=15)
+
+    plt.xticks(rotation=0)
+
+    fig.suptitle("Exploración de matrices de adyacencia (nodos y aristas)", fontsize=20)
+
+    plt.show()
+
+
+
+## Create all graphs for each phase
+def create_fase_nxs(G, nums, fix, title, color):
+    """
+
+    :return:
+    """
+
+    pos = {}
+
+    if len(nums) > 1:
+        fig, ax = plt.subplots(nums[0], nums[-1], figsize=(17, 8))
+        for num in nums:
+            pos[num] = nx.drawing.nx_agraph.graphviz_layout(G[num + fix])
+
+            nx.draw(
+                G[num + fix],
+                pos=pos[num],
+                ax=ax[num - 1],
+                with_labels=True,
+                node_color=color
+            )
+
+            ax[num - 1].set_title("Intervención #" + str(num + fix))
+
+    else:
+        fig, ax = plt.subplots(nums[0], nums[-1], figsize=(10, 8))
+        for num in nums:
+            pos[num] = nx.drawing.nx_agraph.graphviz_layout(G[num + fix])
+
+            nx.draw(
+                G[num + fix],
+                pos=pos[num],
+                with_labels=True,
+                node_color="g"
+            )
+            ax.set_title("Intervención #" + str(num + fix))
+
+    fig.suptitle(title, fontsize=20)
+
+    plt.show()
+
+
+
+## Networks deep analysis (visual)
+def networks_deep_analysis(G, nums_cols, a_type):
+    """
+
+    :return:
+    """
+
+    ## Initial parameters
+    fig, ax = plt.subplots(2, 3, figsize=(20, 15))
+
+    ## Drawing networks
+    for sel in nums_cols:
+        num = nums_cols[sel]["int"]
+        pos = nums_cols[sel]["pos"]
+
+        if a_type == "visual":
+            col = nums_cols[sel]["col"]
+            nx.draw(
+                G[num],
+                pos=nx.drawing.nx_agraph.graphviz_layout(G[num]),
+                ax=ax[pos[0], pos[1]],
+                with_labels=True,
+                node_color=col
+            )
+
+        else:
+            values = [nx.degree_centrality(G[num])[val] for val in nx.degree_centrality(G[num])]
+            nx.draw(
+                G[num],
+                pos=nx.drawing.nx_agraph.graphviz_layout(G[num]),
+                ax=ax[pos[0], pos[1]],
+                with_labels=True,
+                cmap=plt.get_cmap('inferno'),
+                node_color=values
+            )
+
+        ax[pos[0], pos[1]].set_title("Intervención #" + str(num) + " (" + sel + ")")
+
+
+
+
+"----------------------------------------------------------------------------------------------------------------------"
+## END OF FILE ##
+"----------------------------------------------------------------------------------------------------------------------"
