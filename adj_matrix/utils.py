@@ -303,6 +303,7 @@ def networks_deep_analysis(G, nums_cols, a_type):
         num = nums_cols[sel]["int"]
         pos = nums_cols[sel]["pos"]
 
+        #### Analysis type 1: visual analysis
         if a_type == "visual":
             col = nums_cols[sel]["col"]
             nx.draw(
@@ -313,8 +314,39 @@ def networks_deep_analysis(G, nums_cols, a_type):
                 node_color=col
             )
 
+            fig.suptitle("Inspección visual de las redes", fontsize=20)
+
+
+        #### Analysis type 2: centrality metrics
         else:
-            values = [nx.degree_centrality(G[num])[val] for val in nx.degree_centrality(G[num])]
+            #### Calculating values according to centrality metric
+            if a_type == "grado":
+                values = [nx.degree_centrality(G[num])[val] for val in nx.degree_centrality(G[num])]
+                fig.suptitle("Medida de centralidad (" + a_type + ") en tiempos seleccionados", fontsize=20)
+            elif a_type == "intermediación":
+                values = [nx.betweenness_centrality(G[num])[val] for val in nx.betweenness_centrality(G[num])]
+                fig.suptitle("Medida de centralidad (" + a_type + ") en tiempos seleccionados", fontsize=20)
+            elif a_type == "eigenvector":
+                values = [nx.eigenvector_centrality(G[num])[val] for val in nx.eigenvector_centrality(G[num])]
+                fig.suptitle("Medida de centralidad (" + a_type + ") en tiempos seleccionados", fontsize=20)
+            elif a_type == "comunidades":
+                fig.suptitle("Detección de comunidades", fontsize=20)
+                ###### Initial values
+                comms = nx.algorithms.community.greedy_modularity_communities(G[num])
+                dict_x2 = {}
+                values = []
+                val = 0.25
+                ###### Community loops
+                for i in range(1, len(comms) + 1):
+                    node_val = {i: val for i in comms[i - 1]}
+                    dict_x2.update(node_val)
+                    val += 0.25
+                for node in G[num]:
+                    values.append(dict_x2[node])
+            else:
+                raise NameError("Análisis no válido")
+
+            #### Creating graph
             nx.draw(
                 G[num],
                 pos=nx.drawing.nx_agraph.graphviz_layout(G[num]),
@@ -324,7 +356,73 @@ def networks_deep_analysis(G, nums_cols, a_type):
                 node_color=values
             )
 
+
         ax[pos[0], pos[1]].set_title("Intervención #" + str(num) + " (" + sel + ")")
+
+    plt.show()
+
+
+
+## Dataframes with numeric calculations - each intervention
+def df_centrality_metrics_periods(G, a_type):
+    """
+
+    :return:
+    """
+
+    ##
+    dict_x = {}
+
+    for num in G:
+
+        if a_type == "eigenvector":
+            dfx = pd.DataFrame.from_dict(nx.eigenvector_centrality(G[num]), orient="index")
+        elif a_type == "intermediación":
+            dfx = pd.DataFrame.from_dict(nx.betweenness_centrality(G[num], normalized=True), orient="index")
+
+        dfx.sort_values(by=0, ascending=False, inplace=True)
+        dfx.reset_index(inplace=True)
+        dfx[num] = dfx.apply(lambda x: (x["index"], round(x[0], 2)), axis = 1)
+        dfx = dfx.loc[0:2, [num]]
+        dict_x[num] = dfx
+
+    ##
+    dfx = pd.concat([dict_x[num] for num in dict_x], axis=1)
+    dfx.index = range(1, 4)
+    print("Calculo de métrica de centralidad (" + a_type + ") para todas las intervenciones" )
+    display(dfx)
+
+
+
+## Dataframes with numeric calculations - mean
+def df_centrality_metrics_mean(G, a_type):
+    """
+
+    :return:
+    """
+
+    ##
+    dict_x = {}
+
+    for num in G:
+
+        if a_type == "eigenvector":
+            dfx = pd.DataFrame.from_dict(nx.eigenvector_centrality(G[num]), orient="index")
+        elif a_type == "intermediación":
+            dfx = pd.DataFrame.from_dict(nx.betweenness_centrality(G[num], normalized=True), orient="index")
+
+        dfx.columns = [num]
+        dfx[num] = dfx[num].apply(lambda x: round(x, 2))
+        dict_x[num] = dfx
+
+    ##
+    dfx = pd.concat([dict_x[num] for num in dict_x], axis=1)
+    dfx[dfx.isna()] = 0
+    dfx["mean"] = round(dfx.mean(axis=1), 2)
+    dfx.sort_values(by="mean", ascending=False, inplace=True)
+    dfx = dfx.loc[:, ["mean"]].iloc[0:5, :]
+    print("Promedio de métrica de centralidad (" + a_type + ") para todas las intervenciones" )
+    display(dfx)
 
 
 
